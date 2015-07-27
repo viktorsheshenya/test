@@ -1,0 +1,9 @@
+= render "form"
+%br
+%br
+%br
+.items
+  %table.table
+    %tr.table-head.table-row
+    - if @items.present?
+      = render @items

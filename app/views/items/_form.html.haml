@@ -1,0 +1,6 @@
+= simple_form_for(@item, remote: true, html: { class: "form-inline", data: {type: "json"}}, defaults: {wrapper_html: { class: "wrapper"}}) do |f|
+  .form-group
+    = f.input :name, label: false, placeholder: "Название", required: true
+  .form-group
+    = f.input :picture, label: false, required: true
+  = f.button :submit, value: "Сохранить", class: "btn btn-primary"

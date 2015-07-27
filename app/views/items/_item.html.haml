@@ -1,0 +1,17 @@
+%tr{id: "item-#{item.id}"}
+  %td= item.name
+  %td= image_tag item.picture_url(:thumb)
+  %td
+    = link_to "Редактировать", "#", class: 'view-form-edit-item'
+    = link_to "Удалить", item, method: :delete, id: "item-#{item.id}", data: { confirm: 'Уверены?' }, "data-type" => "json", remote: true, class: "item-destroy"
+%tr{class: "tr-item-form-edit-#{item.id}"}
+  %td{colspan: 3}
+    .item-form-edit{style: "display: none;"}
+      %div{class: "item-form-edit-#{item.id}"}
+        = simple_form_for(item, remote: true, html: { class: "form-edit-item form-inline", data: {type: "json"}}, defaults: {wrapper_html: { class: "wrapper"}}) do |f|
+          .form-group
+            = f.input :name, label: false, placeholder: "Название", required: true
+          .form-group
+            = f.input :picture, label: false, required: true
+          = f.button :submit, value: "Сохранить"
+        = link_to "Отменить редактирование", "#", id: "cancel_edit"
